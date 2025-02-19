@@ -1,0 +1,17 @@
+CREATE TABLE  products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description varchar(500) NOT NULL,
+    tdc_otc INT NOT NUlL DEFAULT 0,     
+    price FLOAT NOT NULL DEFAULT 0.0,
+    speed INT NOT NULL DEFAULT 0, 
+    mrc INT NOT NULL DEFAULT 0,
+    is_unlimited BOOLEAN NOT NULL DEFAULT FALSE,
+    is_discounted BOOLEAN NOT NULL DEFAULT FALSE,
+    is_promo BOOLEAN NOT NULL DEFAULT FALSE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    product_type_id INT NOT NULL,
+    currency VARCHAR(4) DEFAULT 'NA',
+    created_at TIMESTAMP(6) WITH TIME ZONE  DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP(6) WITH TIME ZONE  DEFAULT CURRENT_TIMESTAMP
+)
