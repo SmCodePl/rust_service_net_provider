@@ -4,13 +4,14 @@ extern crate diesel;
 extern crate dotenv;
 
 mod schema;
-mod models;
 mod db;
 mod repository;
+mod viewmodels;
+mod entities;
 
 fn main() {
-    println!("Hello, world!");
-   
+
+  
     let result = get_all_product_types();
     println!("Displaying {} posts", result.len());
     
