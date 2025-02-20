@@ -72,3 +72,20 @@ pub fn get_products_result(active: bool,page: u8, page_size: u8 ) -> Vec<Product
 
    return results;
 }
+
+// Function to get zip_code by zip_code (text)
+pub fn get_zip_code(zip_code: &str) -> Vec<Area> {
+   use crate::schema::areas::dsl::*;
+   println!("get_zip_code");
+
+   // Establish a connection to the database
+   let connection = &mut establish_connection();
+
+   // Load all products from the database
+   let results = areas
+      .filter(zip_code.like(zip_code))
+      .load::<Area>(connection)
+      .expect("Error loading areas");
+
+   return results;
+}

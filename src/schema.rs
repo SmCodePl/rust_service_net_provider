@@ -1,6 +1,33 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    areas (id) {
+        id -> Int4,
+        country_code -> Text,
+        zip_code -> Text,
+        place_name -> Text,
+        admin_name1 -> Text,
+        admin_code1 -> Text,
+        admin_name2 -> Text,
+        admin_code2 -> Text,
+        latitude -> Float8,
+        longitude -> Float8,
+        accuracy -> Float8,
+        created_at -> Nullable<Timestamptz>,
+        updated_at -> Nullable<Timestamptz>,
+    }
+}
+
+diesel::table! {
+    product_areas (id) {
+        id -> Int4,
+        product_id -> Nullable<Int4>,
+        area_id -> Nullable<Int4>,
+        timestamp -> Timestamptz,
+    }
+}
+
+diesel::table! {
     product_types (id) {
         id -> Int4,
         name -> Text,
@@ -34,9 +61,13 @@ diesel::table! {
     }
 }
 
+diesel::joinable!(product_areas -> areas (area_id));
+diesel::joinable!(product_areas -> products (product_id));
 diesel::joinable!(products -> product_types (product_type_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
+    areas,
+    product_areas,
     product_types,
     products,
 );
