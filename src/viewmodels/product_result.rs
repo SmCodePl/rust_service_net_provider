@@ -1,5 +1,5 @@
 use diesel::prelude::*;
-use serde::{Serialize};
+use serde::Serialize;
 
 #[derive(Debug, Serialize, Queryable)]
 pub struct ProductViewModel{

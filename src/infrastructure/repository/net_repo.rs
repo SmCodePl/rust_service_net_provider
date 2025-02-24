@@ -1,16 +1,18 @@
 use std::sync::Arc;
 use async_trait::async_trait;
 use diesel::{ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl, TextExpressionMethods};
-use crate::domain::interfaces::repository::NetRepository;
-use crate::domain::entities::area::Area;
-use crate::domain::entities::product::Product;
-use crate::domain::entities::product_type::ProductType;
-use crate::viewmodels::product_result::ProductViewModel;
-use crate::viewmodels::product_area_result::ProductAreaViewModel;
 
-use crate::infrastructure::db::connection::{DbPool, establish_connection}; 
-
-//use diesel::prelude::*;
+use crate::{
+      domain::interfaces::repository::NetRepository,
+      domain::entities::area::Area,
+      domain::entities::product::Product,
+      domain::entities::product_type::ProductType,
+      
+      viewmodels::product_result::ProductViewModel,
+      viewmodels::product_area_result::ProductAreaViewModel,
+      
+      infrastructure::db::connection::{DbPool,establish_connection}
+};
 
 #[derive(Debug,Clone)]
 pub struct DbNetRepository {
@@ -80,7 +82,8 @@ impl NetRepository for Arc<DbNetRepository>{
          .expect("Error loading products")
    }
 
-   // // Function to get zip_code by zip_code (text)
+
+   //Function to get zip_code by zip_code (text)
    async fn get_zip_code(&self, _zip_code: &str) -> Option<Vec<Area>> {    
       use crate::schema::areas::dsl::*;
       // Load all products from the database
@@ -90,6 +93,7 @@ impl NetRepository for Arc<DbNetRepository>{
          .optional()
          .expect("Error loading areas")     
    }
+
 
    // //Function get product_area by zip_code (text) and place_name (text)
    async fn get_product_area(&self, zip_code: &str, place_name: &str) -> Option<Vec<ProductAreaViewModel>> {
