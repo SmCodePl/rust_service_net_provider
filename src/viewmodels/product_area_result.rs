@@ -1,7 +1,7 @@
 
 use crate::schema::*;
 use diesel::prelude::*;
-use serde::{de, Serialize};
+use serde::{Serialize};
 
 #[derive(Debug, Serialize, Queryable)]
 pub struct ProductAreaViewModel{

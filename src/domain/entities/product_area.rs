@@ -1,6 +1,6 @@
 use crate::schema::*;
 use diesel::prelude::*;
-use serde::{de, Serialize};
+use serde::{Serialize};
 
 #[derive(Debug, Serialize, Queryable)]
 #[diesel(belongs_to(product))]
